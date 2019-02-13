@@ -14,6 +14,7 @@
 		7CBA8DD622138F2D00FDE75F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBA8DD422138F2D00FDE75F /* LaunchScreen.storyboard */; };
 		7CBA8DE122138F2E00FDE75F /* Mapping101Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA8DE022138F2E00FDE75F /* Mapping101Tests.swift */; };
 		7CBA8DEC22138F2E00FDE75F /* Mapping101UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA8DEB22138F2E00FDE75F /* Mapping101UITests.swift */; };
+		7CBA8DFB2213901E00FDE75F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBA8DFA2213901E00FDE75F /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		7CBA8DE722138F2E00FDE75F /* Mapping101UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Mapping101UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBA8DEB22138F2E00FDE75F /* Mapping101UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping101UITests.swift; sourceTree = "<group>"; };
 		7CBA8DED22138F2E00FDE75F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CBA8DFA2213901E00FDE75F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CBA8DFB2213901E00FDE75F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 				7CBA8DDF22138F2E00FDE75F /* Mapping101Tests */,
 				7CBA8DEA22138F2E00FDE75F /* Mapping101UITests */,
 				7CBA8DC922138F2D00FDE75F /* Products */,
+				7CBA8DF92213901D00FDE75F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +127,14 @@
 				7CBA8DED22138F2E00FDE75F /* Info.plist */,
 			);
 			path = Mapping101UITests;
+			sourceTree = "<group>";
+		};
+		7CBA8DF92213901D00FDE75F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CBA8DFA2213901E00FDE75F /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
