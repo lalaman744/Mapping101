@@ -9,16 +9,24 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
+    
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        return df
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        mapView.delegate = self
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -37,6 +45,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if let location = locationManager.location {
             mapView.setCenter(location.coordinate, animated: true)
         }
+    }
+    
+    @IBAction func addCurrentLocation(_ sender: Any) {
+        if let location = locationManager.location {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location.coordinate
+            let timeStamp = dateFormatter.string(from: Date())
+            annotation.title = "You were here at \(timeStamp)"
+            mapView.addAnnotation(annotation)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKPointAnnotation {
+            let pinAnnotation = MKPinAnnotationView()
+            pinAnnotation.pinTintColor = UIColor.purple
+            pinAnnotation.annotation = annotation
+            pinAnnotation.canShowCallout = true
+            return pinAnnotation
+        }
+        return nil
     }
 }
 
