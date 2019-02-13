@@ -10,9 +10,11 @@ import UIKit
 import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-
+    
+    @IBOutlet weak var locationText: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
+    let geoCoder = CLGeocoder()
     
     let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -54,6 +56,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let timeStamp = dateFormatter.string(from: Date())
             annotation.title = "You were here at \(timeStamp)"
             mapView.addAnnotation(annotation)
+            
+            geoCoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks: [CLPlacemark]?, error: Error?) in self.locationText.text = "\(placeMarks![0])"
+                //todo error handling
+                
+            })
         }
     }
     
