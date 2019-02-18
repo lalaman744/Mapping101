@@ -51,6 +51,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     @IBAction func addCurrentLocation(_ sender: Any) {
         if let location = locationManager.location {
+
+            let closeAnnotations = mapView.annotations.map({ CLLocation(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude) }).filter ({$0.distance(from: location) < 30 })
+            
+            if closeAnnotations.count > 1 {
+                print("Other locations are too close. Not adding.")
+                return
+            }
+            
             let annotation = MKPointAnnotation()
             annotation.coordinate = location.coordinate
             let timeStamp = dateFormatter.string(from: Date())
@@ -67,7 +75,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKPointAnnotation {
             let pinAnnotation = MKPinAnnotationView()
-            pinAnnotation.pinTintColor = UIColor.purple
+            pinAnnotation.pinTintColor = UIColor.green
             pinAnnotation.annotation = annotation
             pinAnnotation.canShowCallout = true
             return pinAnnotation
